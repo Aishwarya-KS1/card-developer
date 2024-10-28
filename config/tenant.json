@@ -20,7 +20,7 @@
   "getStartedFilePath": "docs/get-started.md",
   "apiVersions": [ 
       {
-        "version": "api",
+        "version": "1.0.1",
         "versionType": "major",
         "releaseNotesPath": "docs/release-notes/2022/march.md",
         "apiSpecFileNames": [
