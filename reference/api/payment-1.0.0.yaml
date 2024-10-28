@@ -5,138 +5,138 @@ info:
   description: Payment Domain Service API Documentation
   version: 1.0.0-March-2024
 servers:
-  - url: https://card.api.fiservapps.com/cs/payments
-    description: Production url
-  - url: https://card-sandbox.api.fiservapps.com/cs/payments
-    description: Sandbox url
+- url: https://card.api.fiservapps.com/cs/payments
+  description: Production url
+- url: https://card-sandbox.api.fiservapps.com/cs/payments
+  description: Sandbox url
 security:
-  - bearerAuth: []
+- bearerAuth: []
 tags:
-  - name: Payment Action
-    description: Payment Action Resources that apply only for Credit
-  - name: Payment Hold
-    description: Payment Hold Resources that apply only for Credit
-  - name: Payment Detail
-    description: Payment Detail Resources that apply only for Credit
+- name: Payment Action
+  description: Payment Action Resources that apply only for Credit
+- name: Payment Hold
+  description: Payment Hold Resources that apply only for Credit
+- name: Payment Detail
+  description: Payment Detail Resources that apply only for Credit
 paths:
   /v1/payments/actions:
     post:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: payment Actions
-      summary: 'Use this method to update a fixed payment, update a recurring payment or delete an automatic payment. Only one operation can be performed at a time. <div style="margin-bottom: 1px"><b> Servers: </b><div style="font-size:13px"><div style="margin-bottom: 1px"><a href="https://card.api.fiservapps.com/cs/oauth2"> https://card.api.fiservapps.com/cs/oauth2 </a> - Production server (uses live data) </div><a href="https://card-sandbox.api.fiservapps.com/cs/oauth2"> https://card-sandbox.api.fiservapps.com/cs/oauth2 </a> - Sandbox server (uses test data)</div></div>'
+      summary: Use this method to update a fixed payment, update a recurring payment or delete an automatic payment.Only one operation can be performed at a time.
       operationId: paymentActions
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. An access token is required for every request. Tokens expire after 15 minutes. Provide the value in the header, as follows: Authorization:: Bearer <Access Token Value>.  For more information on access tokens, see (https://card.developer.fiserv.com/apis/token)."
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User, for whom the request is made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8-digit client id.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. An access token is required for every request. Tokens expire after 15 minutes. Provide the value in the header, as follows: Authorization:: Bearer <Access Token Value>.  For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User, for whom the request is made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8-digit client id.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
       requestBody:
         description: paymentActionRequest
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PaymentActionRequest"
+              $ref: '#/components/schemas/PaymentActionRequest'
         required: true
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -153,147 +153,147 @@ paths:
   /v1/payments/scheduledPayment:
     post:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: Manage Scheduled Payment
       summary: This method creates, updates or cancels a Onetime ACH or Recurring ACH Payment.
       operationId: manageScheduledPayment
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Each request reqires an access token. For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: system
-          in: header
-          description: Required. Provide 4 digit system value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "4359"
-        - name: prin
-          in: header
-          description: Required. Provide 4 digit prin value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
-        - name: agent
-          in: header
-          description: Required. Provide 4 digit agent value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Each request reqires an access token. For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
+      - name: system
+        in: header
+        description: Required. Provide 4 digit system value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "4359"
+      - name: prin
+        in: header
+        description: Required. Provide 4 digit prin value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
+      - name: agent
+        in: header
+        description: Required. Provide 4 digit agent value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
       requestBody:
         description: scheduledPaymentRequest
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ScheduledPaymentRequest"
+              $ref: '#/components/schemas/ScheduledPaymentRequest'
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -310,191 +310,191 @@ paths:
   /v1/payments/scheduledPayments/search:
     post:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: Get Scheduled Payments
       summary: This method returns all the Payment Scheduled associated to one specif Account Number. Search can be done by accountNumber.
       operationId: getScheduledPayments
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: system
-          in: header
-          description: Required. Provide 4 digit system value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "4359"
-        - name: prin
-          in: header
-          description: Required. Provide 4 digit prin value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
-        - name: agent
-          in: header
-          description: Required. Provide 4 digit agent value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
-        - name: pageOffset
-          in: query
-          description: Page Number to fetch
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: integer
-            format: int32
-            default: 0
-        - name: pageLimit
-          in: query
-          description: The number of records to be returned
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: integer
-            format: int32
-            default: 99
-        - name: sortBy
-          in: query
-          description: Sort By Criteria
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-            default: PAYMENT_DATE
-            enum:
-              - PAYMENT_DATE
-        - name: sortOrder
-          in: query
-          description: Sort Order
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-            default: DESC
-            enum:
-              - DESC
-              - ASC
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
+      - name: system
+        in: header
+        description: Required. Provide 4 digit system value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "4359"
+      - name: prin
+        in: header
+        description: Required. Provide 4 digit prin value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
+      - name: agent
+        in: header
+        description: Required. Provide 4 digit agent value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
+      - name: pageOffset
+        in: query
+        description: Page Number to fetch
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageLimit
+        in: query
+        description: The number of records to be returned
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          default: 99
+      - name: sortBy
+        in: query
+        description: Sort By Criteria
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: PAYMENT_DATE
+          enum:
+          - PAYMENT_DATE
+      - name: sortOrder
+        in: query
+        description: Sort Order
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SchedulePaymentsSearchRequest"
+              $ref: '#/components/schemas/SchedulePaymentsSearchRequest'
         required: true
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SearchScheduledPaymentResponse"
+                $ref: '#/components/schemas/SearchScheduledPaymentResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -511,148 +511,148 @@ paths:
   /v1/payments/registeredAccount:
     post:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: Manage Registered Account
       summary: This method add or delete a Registered Account depending of the operation include in request payload.
       operationId: manageRegisteredAccount
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: system
-          in: header
-          description: Required. Provide 4 digit system value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "4359"
-        - name: prin
-          in: header
-          description: Required. Provide 4 digit prin value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
-        - name: agent
-          in: header
-          description: Required. Provide 4 digit agent value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
+      - name: system
+        in: header
+        description: Required. Provide 4 digit system value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "4359"
+      - name: prin
+        in: header
+        description: Required. Provide 4 digit prin value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
+      - name: agent
+        in: header
+        description: Required. Provide 4 digit agent value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
       requestBody:
         description: registeredAccountRequest
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RegisteredAccountRequest"
+              $ref: '#/components/schemas/RegisteredAccountRequest'
         required: true
       responses:
         "201":
           description: Created
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -669,150 +669,150 @@ paths:
   /v1/payments/registeredAccount/search:
     post:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: Get Registered Accounts
       summary: This method returns the Registered Accounts associated to one specific account number.
       operationId: getRegisteredAccounts
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: system
-          in: header
-          description: Required. Provide 4 digit system value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "4359"
-        - name: prin
-          in: header
-          description: Required. Provide 4 digit prin value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
-        - name: agent
-          in: header
-          description: Required. Provide 4 digit agent value.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: "0000"
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
+      - name: system
+        in: header
+        description: Required. Provide 4 digit system value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "4359"
+      - name: prin
+        in: header
+        description: Required. Provide 4 digit prin value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
+      - name: agent
+        in: header
+        description: Required. Provide 4 digit agent value.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "0000"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RegisteredAccountSearchRequest"
+              $ref: '#/components/schemas/RegisteredAccountSearchRequest'
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RegisteredAccountSearchResponse"
+                $ref: '#/components/schemas/RegisteredAccountSearchResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -829,119 +829,119 @@ paths:
   /v1/payments/rightTimePayment:
     post:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: Add Right Time Payment
       summary: Use this method to add the right time payment.
       operationId: addRightTimePayment
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RightTimePaymentRequest"
+              $ref: '#/components/schemas/RightTimePaymentRequest'
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -958,120 +958,120 @@ paths:
   /v1/payments/reverseRightTimePayment:
     patch:
       tags:
-        - Payment Action
+      - Payment Action
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Action
       x-proxy-name: Reverse Right Time Payment
       summary: Use this method to reverse the right time payment.
       operationId: reverseRightTimePayment
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ReverseRightTimePayment"
+              $ref: '#/components/schemas/ReverseRightTimePayment'
         required: true
       responses:
         "204":
           description: No Content
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1088,168 +1088,168 @@ paths:
   /v1/payments/search:
     post:
       tags:
-        - Payment Detail
+      - Payment Detail
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Detail
       x-proxy-name: Get Account Payments
       summary: This method returns all the Payments associated to one specific Account Number.
       operationId: getAccountPayments
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
-        - name: pageOffset
-          in: query
-          description: Page Number to fetch
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: integer
-            format: int32
-            default: 0
-        - name: pageLimit
-          in: query
-          description: The number of records to be returned
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: integer
-            format: int32
-            default: 99
-        - name: sortBy
-          in: query
-          description: Sort By Criteria
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-            default: PAYMENT_DATE
-            enum:
-              - PAYMENT_DATE
-        - name: sortOrder
-          in: query
-          description: Sort Order
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-            default: DESC
-            enum:
-              - DESC
-              - ASC
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
+      - name: pageOffset
+        in: query
+        description: Page Number to fetch
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageLimit
+        in: query
+        description: The number of records to be returned
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+          default: 99
+      - name: sortBy
+        in: query
+        description: Sort By Criteria
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: PAYMENT_DATE
+          enum:
+          - PAYMENT_DATE
+      - name: sortOrder
+        in: query
+        description: Sort Order
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: DESC
+          enum:
+          - DESC
+          - ASC
       requestBody:
         description: common
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PaymentSearchRequest"
+              $ref: '#/components/schemas/PaymentSearchRequest'
         required: true
       responses:
         "200":
           description: OK
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SearchPaymentResponse"
+                $ref: '#/components/schemas/SearchPaymentResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1266,45 +1266,45 @@ paths:
   /v1/payments/holds/search:
     post:
       tags:
-        - Payment Hold
+      - Payment Hold
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Hold
       x-proxy-name: Payment Hold Search
       summary: This API retrives payment hold information.
       operationId: paymentHoldSearch
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PaymentHoldSearchRequest"
+              $ref: '#/components/schemas/PaymentHoldSearchRequest'
         required: true
       responses:
         "200":
@@ -1312,96 +1312,96 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaymentHoldSearchResponse"
+                $ref: '#/components/schemas/PaymentHoldSearchResponse'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch400:
-                  $ref: "#/components/examples/PaymentHoldSearch400"
+                  $ref: '#/components/examples/PaymentHoldSearch400'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch401:
-                  $ref: "#/components/examples/PaymentHoldSearch401"
+                  $ref: '#/components/examples/PaymentHoldSearch401'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch403:
-                  $ref: "#/components/examples/PaymentHoldSearch403"
+                  $ref: '#/components/examples/PaymentHoldSearch403'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch404:
-                  $ref: "#/components/examples/PaymentHoldSearch404"
+                  $ref: '#/components/examples/PaymentHoldSearch404'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch406:
-                  $ref: "#/components/examples/PaymentHoldSearch406"
+                  $ref: '#/components/examples/PaymentHoldSearch406'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch415:
-                  $ref: "#/components/examples/PaymentHoldSearch415"
+                  $ref: '#/components/examples/PaymentHoldSearch415'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch422:
-                  $ref: "#/components/examples/PaymentHoldSearch422"
+                  $ref: '#/components/examples/PaymentHoldSearch422'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1418,141 +1418,141 @@ paths:
   /v1/payments/hold:
     patch:
       tags:
-        - Payment Hold
+      - Payment Hold
       x-child-product-name: Payment v1.0.0
       x-group-name: Payment Hold
       x-proxy-name: Payment Hold Release Update
       summary: This API releases the hold on the payment and makes updates to the existing payment hold.
       operationId: paymentHoldReleaseUpdate
       parameters:
-        - name: Authorization
-          in: header
-          description: "Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>"
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
-        - name: userId
-          in: header
-          description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
-          required: false
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: johndoe
-        - name: x-fapi-financial-id
-          in: header
-          description: Required. Provide 8 digit client id
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: 12345678
+      - name: Authorization
+        in: header
+        description: 'Retrieve an access token through the Access Token API. Access token is required in every request. For more information on access tokens, see  (https://card.developer.fiserv.com/apis/token).Tokens expire after 15 minutes. Provide the value as follows in the header. Authorization:: Bearer <Access Token Value>'
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: Bearer USlfM8dilzKZPcuGGP3BfVLd7Snk
+      - name: userId
+        in: header
+        description: Optional. User on behalf of whom the request is being made. userId must be alphanumeric.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: johndoe
+      - name: x-fapi-financial-id
+        in: header
+        description: Required. Provide 8 digit client id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: 12345678
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PaymentHoldRequest"
+              $ref: '#/components/schemas/PaymentHoldRequest'
         required: true
       responses:
         "204":
           description: Payment Hold released successfully OR Payment Hold updated successfully
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
         "400":
           description: Invalid Request
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch400:
-                  $ref: "#/components/examples/PaymentHold400"
+                  $ref: '#/components/examples/PaymentHold400'
         "401":
           description: Unauthorized access
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch401:
-                  $ref: "#/components/examples/PaymentHold401"
+                  $ref: '#/components/examples/PaymentHold401'
         "403":
           description: Forbidden
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch403:
-                  $ref: "#/components/examples/PaymentHold403"
+                  $ref: '#/components/examples/PaymentHold403'
         "404":
           description: Not Found
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch404:
-                  $ref: "#/components/examples/PaymentHold404"
+                  $ref: '#/components/examples/PaymentHold404'
         "406":
           description: Unacceptable
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch406:
-                  $ref: "#/components/examples/PaymentHold406"
+                  $ref: '#/components/examples/PaymentHold406'
         "415":
           description: Unsupported Media Type
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch415:
-                  $ref: "#/components/examples/PaymentHold415"
+                  $ref: '#/components/examples/PaymentHold415'
         "422":
           description: Unprocessable Entity
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/4xxError"
+                $ref: '#/components/schemas/4xxError'
               examples:
                 PaymentHoldSearch422:
-                  $ref: "#/components/examples/PaymentHold422"
+                  $ref: '#/components/examples/PaymentHold422'
         "500":
           description: Internal Server Error
           headers:
             x-fapi-interaction-id:
-              $ref: "#/components/headers/interactionId"
+              $ref: '#/components/headers/interactionId'
           content:
             application/json:
               schema:
@@ -1593,7 +1593,7 @@ components:
           example: 400
     ScheduledPaymentRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -1605,14 +1605,14 @@ components:
           description: Payment registration identification associated with the account.
           example: "2697068"
         makePayment:
-          $ref: "#/components/schemas/MakePayment"
+          $ref: '#/components/schemas/MakePayment'
         updatePayment:
-          $ref: "#/components/schemas/UpdatePayment"
+          $ref: '#/components/schemas/UpdatePayment'
         cancelPayment:
-          $ref: "#/components/schemas/CancelPayment"
+          $ref: '#/components/schemas/CancelPayment'
     MakePayment:
       required:
-        - paymentType
+      - paymentType
       type: object
       properties:
         paymentAmount:
@@ -1628,8 +1628,8 @@ components:
           type: string
           description: Type of payment
           enum:
-            - ONETIME_ACH
-            - RECURRING_ACH
+          - ONETIME_ACH
+          - RECURRING_ACH
         recurringStartDate:
           type: string
           description: Date when the recurring ACH payment starts.
@@ -1646,7 +1646,7 @@ components:
           example: 2023-09-09
         recurringCalendarDay:
           type: string
-          description: "Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday."
+          description: 'Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday.'
           example: "0101000"
         taxAmount:
           type: string
@@ -1657,11 +1657,11 @@ components:
           description: Date the recurring ACH payment is scheduled.
           example: ON_TIME_PAYMENT_DUE
           enum:
-            - ON_TIME_PAYMENT_DUE
-            - SPECIFIC_DAY_MONTH
+          - ON_TIME_PAYMENT_DUE
+          - SPECIFIC_DAY_MONTH
         recurringPaymentType:
           type: string
-          description: "Type of ACH recurring payment for this account. Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance."
+          description: 'Type of ACH recurring payment for this account. Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance.'
           example: "1"
         autoPaymentChargeDdaFlag:
           type: string
@@ -1692,8 +1692,8 @@ components:
           type: string
           description: Type of account.
           enum:
-            - CHECKING
-            - SAVINGS
+          - CHECKING
+          - SAVINGS
         authorizationMedium:
           type: string
           description: If the consumer is providing registration information through a self-service interface, such as a web bowser, and they are enter registration data, then they must set the AuthorizationMedium to the same values as your PaymentChannel; valid values are, Unknown, Web, IVR, Walkin, Voice, Fax, Mail.
@@ -1704,7 +1704,7 @@ components:
           example: POS
     UpdatePayment:
       required:
-        - paymentType
+      - paymentType
       type: object
       properties:
         paymentAmount:
@@ -1716,7 +1716,7 @@ components:
           description: Type of payment.
           example: RECURRING_ACH
           enum:
-            - RECURRING_ACH
+          - RECURRING_ACH
         routingNumberBankId:
           type: string
           description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
@@ -1735,7 +1735,7 @@ components:
           example: Daily
         recurringPaymentType:
           type: string
-          description: "Type of ACH recurring payment for this account. Possible values: Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance."
+          description: 'Type of ACH recurring payment for this account. Possible values: Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance.'
           example: "1"
         recurringEndDate:
           type: string
@@ -1744,15 +1744,15 @@ components:
           example: 2023-09-09
         recurringCalendarDay:
           type: string
-          description: "Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday."
+          description: 'Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday.'
           example: "0101000"
         recurrenceDate:
           type: string
           description: Date the recurring ACH payment is scheduled.
           example: ON_TIME_PAYMENT_DUE
           enum:
-            - ON_TIME_PAYMENT_DUE
-            - SPECIFIC_DAY_MONTH
+          - ON_TIME_PAYMENT_DUE
+          - SPECIFIC_DAY_MONTH
         autoPaymentChargeDdaFlag:
           type: string
           description: auto Payment Charge Dda Flag.valid value are G,I,1,5,J,K,4,7,E and F.
@@ -1773,7 +1773,7 @@ components:
           description: Indicates if the payment is or is not disabled.
     CancelPayment:
       required:
-        - paymentType
+      - paymentType
       type: object
       properties:
         paymentAmount:
@@ -1785,8 +1785,8 @@ components:
           description: Type of payment.
           example: ONETIME_ACH
           enum:
-            - ONETIME_ACH
-            - RECURRING_ACH
+          - ONETIME_ACH
+          - RECURRING_ACH
         routingNumberBankId:
           type: string
           description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
@@ -1818,7 +1818,7 @@ components:
           example: 2023-09-08
         recurringPaymentType:
           type: string
-          description: "Type of ACH recurring payment for this account. Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance."
+          description: 'Type of ACH recurring payment for this account. Possible values: 1 - Pay Minimum Due, 2-  Fixed Payment Amount, 4 - Full Statement Balance and 8 - Current Balance.'
           example: "1"
         recurringStartDate:
           type: string
@@ -1832,15 +1832,15 @@ components:
           example: 2023-09-09
         recurringCalendarDay:
           type: string
-          description: "Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday."
+          description: 'Recurring ACH payment day of the month. Contains a 7-character string that defines which days of the week for payments to occur. The first character in the string represents the first day of the week, Sunday. For example, the string “0100000” indicates that payments occurs on Mondays. The string “0111110” indicates payments occur on Monday, Tuesday, Wednesday, Thursday, and Friday.'
           example: "0101000"
         recurrenceDate:
           type: string
           description: Date the recurring ACH payment is scheduled.
           example: ON_TIME_PAYMENT_DUE
           enum:
-            - ON_TIME_PAYMENT_DUE
-            - SPECIFIC_DAY_MONTH
+          - ON_TIME_PAYMENT_DUE
+          - SPECIFIC_DAY_MONTH
         isDisabled:
           type: boolean
           description: Indicates if the payment is or is not disabled.
@@ -1856,7 +1856,7 @@ components:
         scheduledPayments:
           type: array
           items:
-            $ref: "#/components/schemas/ScheduledPaymentSearchResponse"
+            $ref: '#/components/schemas/ScheduledPaymentSearchResponse'
     ScheduledPaymentSearchResponse:
       type: object
       properties:
@@ -1873,8 +1873,8 @@ components:
           type: string
           description: Type of payment.
           enum:
-            - ONETIME_ACH
-            - RECURRING_ACH
+          - ONETIME_ACH
+          - RECURRING_ACH
         routingNumberBankId:
           type: string
           description: Routing Number/Bank Identification number attached with the account number to identify the financial institution.
@@ -1888,11 +1888,11 @@ components:
           description: Type of account.
           example: SAVINGS
           enum:
-            - CHECKING
-            - SAVINGS
+          - CHECKING
+          - SAVINGS
         recurringPaymentType:
           type: string
-          description: "Type of ACH recurring payment for this account. Possible values: Pay Minimum Due, Current Balance, Full Statement Balance and Fixed Payment Amount."
+          description: 'Type of ACH recurring payment for this account. Possible values: Pay Minimum Due, Current Balance, Full Statement Balance and Fixed Payment Amount.'
           example: PAY MINIMUM DUE
         recurringStartDate:
           type: string
@@ -1913,8 +1913,8 @@ components:
           description: Date the recurring ACH payment is scheduled.
           example: ON_TIME_PAYMENT_DUE
           enum:
-            - ON_TIME_PAYMENT_DUE
-            - SPECIFIC_DAY_MONTH
+          - ON_TIME_PAYMENT_DUE
+          - SPECIFIC_DAY_MONTH
         registrationId:
           type: string
           description: One-time payment registration identification associated with the account.
@@ -2013,7 +2013,7 @@ components:
           example: XXXXX6789
     SchedulePaymentsSearchRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -2030,9 +2030,9 @@ components:
           example: "12345678"
     UpdateRecurringPayment:
       required:
-        - autoPaymentChargeDdaFlag
-        - autoPaymentStartDate
-        - transitRoutingAccount
+      - autoPaymentChargeDdaFlag
+      - autoPaymentStartDate
+      - transitRoutingAccount
       type: object
       properties:
         transitRoutingAccount:
@@ -2041,7 +2041,7 @@ components:
           example: "123456789"
         autoPaymentChargeDdaFlag:
           type: string
-          description: "Auto payment charge Dda flag. Valid values are G, I, 1, 5 - Pay Minimum Due, J,K - Fixed Payment Amount, 4,7 - Full Statement Balance, E, F - Current Balance. If value are J and K, then autoPaymentDesignatedAmount is to passed. "
+          description: 'Auto payment charge Dda flag. Valid values are G, I, 1, 5 - Pay Minimum Due, J,K - Fixed Payment Amount, 4,7 - Full Statement Balance, E, F - Current Balance. If value are J and K, then autoPaymentDesignatedAmount is to passed. '
           example: G
         autoPaymentDesignatedAmount:
           type: string
@@ -2067,7 +2067,7 @@ components:
           example: "12345678"
     UpdateFixedPayment:
       required:
-        - paymentAmount
+      - paymentAmount
       type: object
       properties:
         paymentAmount:
@@ -2076,10 +2076,10 @@ components:
           example: "1.00"
     DeleteAutoPayment:
       required:
-        - autoPaymentChargeDdaFlag
-        - autoPaymentDesignatedAmount
-        - autoPaymentEndDate
-        - autoPaymentStartDate
+      - autoPaymentChargeDdaFlag
+      - autoPaymentDesignatedAmount
+      - autoPaymentEndDate
+      - autoPaymentStartDate
       type: object
       properties:
         autoPaymentStartDate:
@@ -2102,7 +2102,7 @@ components:
           example: "0"
     PaymentActionRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -2110,14 +2110,14 @@ components:
           description: Account identifier on the system of record.
           example: "12345678"
         updateFixedPayment:
-          $ref: "#/components/schemas/UpdateFixedPayment"
+          $ref: '#/components/schemas/UpdateFixedPayment'
         updateRecurringPayment:
-          $ref: "#/components/schemas/UpdateRecurringPayment"
+          $ref: '#/components/schemas/UpdateRecurringPayment'
         deleteAutoPayment:
-          $ref: "#/components/schemas/DeleteAutoPayment"
+          $ref: '#/components/schemas/DeleteAutoPayment'
     RegisteredAccountRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -2125,12 +2125,12 @@ components:
           description: Account identifier on the system of record.
           example: "12345678"
         addRegisteredAccount:
-          $ref: "#/components/schemas/AddRegisteredAccount"
+          $ref: '#/components/schemas/AddRegisteredAccount'
         deleteRegisteredAccount:
-          $ref: "#/components/schemas/DeleteRegisteredAccount"
+          $ref: '#/components/schemas/DeleteRegisteredAccount'
     DeleteRegisteredAccount:
       required:
-        - registrationId
+      - registrationId
       type: object
       properties:
         registrationId:
@@ -2141,8 +2141,8 @@ components:
           type: string
           description: Registered Account Type.
           enum:
-            - CHECKING
-            - SAVINGS
+          - CHECKING
+          - SAVINGS
         nameFirst:
           type: string
           description: First name of the customer.
@@ -2173,13 +2173,13 @@ components:
           example: true
     AddRegisteredAccount:
       required:
-        - bankAccountNumber
-        - bankRoutingNumber
+      - bankAccountNumber
+      - bankRoutingNumber
       type: object
       properties:
         bankRoutingNumber:
           type: string
-          description: "The bank routing number associated with the account number to identify the financial institution. "
+          description: 'The bank routing number associated with the account number to identify the financial institution. '
           example: "34567"
         bankAccountNumber:
           type: string
@@ -2193,8 +2193,8 @@ components:
           type: string
           description: Registered Account Type.
           enum:
-            - CHECKING
-            - SAVINGS
+          - CHECKING
+          - SAVINGS
         nameFirst:
           type: string
           description: First name of the customer.
@@ -2229,7 +2229,7 @@ components:
         registeredAccounts:
           type: array
           items:
-            $ref: "#/components/schemas/RegisteredAccountSearch"
+            $ref: '#/components/schemas/RegisteredAccountSearch'
     RegisteredAccountSearch:
       type: object
       properties:
@@ -2244,8 +2244,8 @@ components:
           type: string
           description: The type of the bank account. Values, Checking, Savings.
           enum:
-            - CHECKING
-            - SAVINGS
+          - CHECKING
+          - SAVINGS
         bankAccountNumber:
           type: string
           description: The last four digits of the receiver bank account number.
@@ -2268,8 +2268,8 @@ components:
           example: Voice
     RegisteredAccountSearchRequest:
       required:
-        - accountNumber
-        - registrationLookup
+      - accountNumber
+      - registrationLookup
       type: object
       properties:
         accountNumber:
@@ -2287,8 +2287,8 @@ components:
     RightTimePaymentRequest:
       title: RightTimePaymentRequest
       required:
-        - cardNumber
-        - paymentAmount
+      - cardNumber
+      - paymentAmount
       type: object
       properties:
         paymentAmount:
@@ -2306,9 +2306,9 @@ components:
           example: "4010002000300000"
     ReverseRightTimePayment:
       required:
-        - cardNumber
-        - merchantNumber
-        - paymentAmount
+      - cardNumber
+      - merchantNumber
+      - paymentAmount
       type: object
       properties:
         merchantNumber:
@@ -2336,13 +2336,13 @@ components:
             - 06 - Western Union
           example: MAIL
           enum:
-            - UNKNOWN
-            - TELLER
-            - ATM
-            - RETAILER
-            - ONLINE_BANKING
-            - MAIL
-            - WESTERN_UNION
+          - UNKNOWN
+          - TELLER
+          - ATM
+          - RETAILER
+          - ONLINE_BANKING
+          - MAIL
+          - WESTERN_UNION
         paymentTypeCode:
           type: string
           description: |
@@ -2358,15 +2358,15 @@ components:
             - 08 - Coupon
           example: CASH
           enum:
-            - UNKNOWN
-            - CHECK
-            - MONEY_ORDER
-            - CASH
-            - CREDIT_CARD
-            - DEBIT_CARD
-            - EFT
-            - WIRE_TRANSFER
-            - COUPON
+          - UNKNOWN
+          - CHECK
+          - MONEY_ORDER
+          - CASH
+          - CREDIT_CARD
+          - DEBIT_CARD
+          - EFT
+          - WIRE_TRANSFER
+          - COUPON
         transactionDate:
           type: string
           description: Date used to back date a single-message payment monetary transaction.If a past date is entered, it cannot exceed 365 days in the past. Future dating of payment monetaries is not allowed.
@@ -2374,7 +2374,7 @@ components:
           example: 2023-09-05
     PaymentSearchRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -2391,7 +2391,7 @@ components:
         payments:
           type: array
           items:
-            $ref: "#/components/schemas/Payment"
+            $ref: '#/components/schemas/Payment'
     Payment:
       title: Payment
       type: object
@@ -2429,17 +2429,17 @@ components:
           description: Code that indicates whether a payment reversal was posted for this payment.Check if the code returned is transaction code = 272, show 'Reversed' else 'Not Reversed'.
           example: Reversed
           enum:
-            - Reversed
-            - Not Reversed
+          - Reversed
+          - Not Reversed
         description:
           type: string
           description: Description of the action taken on the account.
           example: Payments
           enum:
-            - Payments
-            - Payment Reversal
-            - Adjustments
-            - Unknown
+          - Payments
+          - Payment Reversal
+          - Adjustments
+          - Unknown
         daysDelinquent:
           type: string
           description: Number of days delinquent.
@@ -2472,7 +2472,7 @@ components:
         interestFeesDistribution:
           type: array
           items:
-            $ref: "#/components/schemas/InterestFeesDistribution"
+            $ref: '#/components/schemas/InterestFeesDistribution'
     InterestFeesDistribution:
       title: InterestFeesDistribution
       type: object
@@ -2495,7 +2495,7 @@ components:
           example: "38.35"
     PaymentHoldSearchRequest:
       required:
-        - accountNumber
+      - accountNumber
       type: object
       properties:
         accountNumber:
@@ -2512,7 +2512,7 @@ components:
         paymentHolds:
           type: array
           items:
-            $ref: "#/components/schemas/PaymentHold"
+            $ref: '#/components/schemas/PaymentHold'
     PaymentHold:
       type: object
       properties:
@@ -2529,10 +2529,10 @@ components:
           description: Payment description.
           example: "251"
           enum:
-            - Payment
-            - Payment_Reversal
-            - Payment_Adjustment
-            - Payment_Authorization
+          - Payment
+          - Payment_Reversal
+          - Payment_Adjustment
+          - Payment_Authorization
         postingDate:
           type: string
           description: Date a payment transaction posted to an account.
@@ -2563,17 +2563,17 @@ components:
           example: 2014-10-02
         currentStatusText:
           type: string
-          description: "Current status of the transaction. Values: • CH–Payment float amount and/or date changed • CL–Payment float cleared • EX–Payment float amount cleared due to exclusion • IN–Payment has been decisioned • MC–Payment has been matched • NS–Payment float amount at 100% • RV–Reversal or adjustment of payment • TR–Transferred due to an account."
+          description: 'Current status of the transaction. Values: • CH–Payment float amount and/or date changed • CL–Payment float cleared • EX–Payment float amount cleared due to exclusion • IN–Payment has been decisioned • MC–Payment has been matched • NS–Payment float amount at 100% • RV–Reversal or adjustment of payment • TR–Transferred due to an account.'
           example: TR–Transferred due to an account
           enum:
-            - CH - Payment float amount and/or date changed
-            - CL - Payment float cleared
-            - EX - Payment float amount cleared due to exclusion
-            - IN - Payment has been decisioned
-            - MC - Payment has been matched
-            - NS - Payment float amount at 100%
-            - RV - Reversal or adjustment of payment
-            - TR - Transferred due to an account
+          - CH - Payment float amount and/or date changed
+          - CL - Payment float cleared
+          - EX - Payment float amount cleared due to exclusion
+          - IN - Payment has been decisioned
+          - MC - Payment has been matched
+          - NS - Payment float amount at 100%
+          - RV - Reversal or adjustment of payment
+          - TR - Transferred due to an account
         availableCreditAmount:
           type: string
           description: Available credit amount for this account.
@@ -2585,22 +2585,22 @@ components:
           example: 2014-10-02
     PaymentHoldReleaseRequest:
       required:
-        - floatAmount
+      - floatAmount
       type: object
       properties:
         floatAmount:
           type: string
-          description: " Whole-dollar amount of the payment that entered the payment float process."
+          description: ' Whole-dollar amount of the payment that entered the payment float process.'
           example: "2501"
     PaymentHoldUpdateRequest:
       required:
-        - floatAmount
-        - floatExpDate
+      - floatAmount
+      - floatExpDate
       type: object
       properties:
         floatAmount:
           type: string
-          description: " Whole-dollar amount of the payment that entered the payment float process. If  newPaymentFloatAmt > than paymentAmountthen display error -Float Amount cannot be greater than Payment Amount."
+          description: ' Whole-dollar amount of the payment that entered the payment float process. If  newPaymentFloatAmt > than paymentAmountthen display error -Float Amount cannot be greater than Payment Amount.'
           example: "2501"
         floatExpDate:
           type: string
@@ -2610,8 +2610,8 @@ components:
       description: floatAmount and floatExpDate are mandatory to call the update.
     PaymentHoldRequest:
       required:
-        - accountNumber
-        - paymentEventIdentifier
+      - accountNumber
+      - paymentEventIdentifier
       type: object
       properties:
         paymentEventIdentifier:
@@ -2623,16 +2623,16 @@ components:
           description: Account identifier
           example: "12345678"
         update:
-          $ref: "#/components/schemas/PaymentHoldUpdateRequest"
+          $ref: '#/components/schemas/PaymentHoldUpdateRequest'
         release:
-          $ref: "#/components/schemas/PaymentHoldReleaseRequest"
+          $ref: '#/components/schemas/PaymentHoldReleaseRequest'
     Error:
       required:
-        - code
-        - message
-        - spanId
-        - timestamp
-        - traceId
+      - code
+      - message
+      - spanId
+      - timestamp
+      - traceId
       type: object
       properties:
         type:
@@ -2643,7 +2643,7 @@ components:
           description: A human-readable explanation specific to this occurrence of the problem.
         instance:
           type: string
-          description: " A URI reference that identifies the specific occurrence of the problem."
+          description: ' A URI reference that identifies the specific occurrence of the problem.'
         title:
           type: string
           description: A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
@@ -2652,7 +2652,7 @@ components:
           description: Date time of the error from a services.
         code:
           type: string
-          description: "Code generated code to identify better and quick the error type and services who trigger it [HTTP Method] - [artifact Id] - [code of the error(logic, action, etc)]. Example: 400-666-301 - where: 400=Http Status Code - 666=Id of the services that throw the error - 301=Not enough credit."
+          description: 'Code generated code to identify better and quick the error type and services who trigger it [HTTP Method] - [artifact Id] - [code of the error(logic, action, etc)]. Example: 400-666-301 - where: 400=Http Status Code - 666=Id of the services that throw the error - 301=Not enough credit.'
         spanId:
           type: string
           description: Id generated given request on each service
@@ -2663,7 +2663,7 @@ components:
           type: array
           description: List of multiple errors that may cause/triggerthe general error.
           items:
-            $ref: "#/components/schemas/ErrorDetails"
+            $ref: '#/components/schemas/ErrorDetails'
     ErrorDetails:
       type: object
       properties:
@@ -2689,7 +2689,7 @@ components:
           type: array
           description: List of multiple errors that may cause/triggerthe general error.
           items:
-            $ref: "#/components/schemas/WarningDetail"
+            $ref: '#/components/schemas/WarningDetail'
     WarningDetail:
       type: object
       properties:
@@ -2776,7 +2776,7 @@ components:
       explode: false
       schema:
         type: string
-      example: "Basic Base64(webServiceUserId): Base64(webServicePassword)"
+      example: 'Basic Base64(webServiceUserId): Base64(webServicePassword)'
       x-mandatory: CREDIT, DEBIT,CREDIT_GATEWAY
       x-validations: Not Blank,No CRLF, in specific format, Basic Base64(<webServiceUserId>:<webServicePassword>)checked in LDAP for existence (Gateway only)
   examples:
