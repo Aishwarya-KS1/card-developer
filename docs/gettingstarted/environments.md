@@ -17,8 +17,11 @@ Please note that the Sandbox API Key created automatically when a Card Developer
 **Also see:** [Validate APIs in The Sandbox](?path=/docs/gettingstarted/validate-apis-in-sandbox.md)
 
 **Host:** https://card-sandbox.api.fiservapps.com
+
 **Token URL:** https://card-sandbox.api.fiservapps.com/cs/oauth2
+
 **Domain URL's:** .com/cs/domain/API's
+
 **Ex:** .com/cs/card/v2/cards/card
 
  
@@ -27,8 +30,11 @@ Production API keys can be created by the **Company Administrator**. Each Produc
 After the API Keys are officially deployed in production, a production-related X.509 digital certificate is made available, and API secret keys are available in the Card Developer Workspace.
 
 **Host:** https://card.api.fiservapps.com
+
 **Token URL:** https://card.api.fiservapps.com/cs/oauth2
+
 **Domain URL's:** .com/cs/domain/API's
+
 **Ex:** .com/cs/v2/cards/card
  
 #### API Versioning
