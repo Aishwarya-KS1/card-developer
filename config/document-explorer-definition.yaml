@@ -254,6 +254,9 @@
     - title: Webhook
       link: docs/release-notes/webhook/webhook-release-note.md
 - sections:
+  - title: Response Codes  
+    link: docs/response-codes.md
+- sections:
   - title: FAQ  
     link: docs/faq/faq.md
 - sections:
